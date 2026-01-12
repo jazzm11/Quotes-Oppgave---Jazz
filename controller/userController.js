@@ -16,17 +16,16 @@ exports.handleSignIn = async (req, res) => {
             const passordgyldig = await argon2.verify(bruker.passord, passord);
 
             if (passordgyldig) {
+                // Session
+                req.session.user = brukernavn;
+
                 res.redirect("/");
                 console.log("User logged in successfully");
             } else {
-                return res.status(400).render("signin", {
-                    message: "Incorrect password",
-                });
+                return res.send("Invalid password");
             }
         } else {
-            return res.status(400).render("signin", {
-                message: "Username does not exist",
-            });
+            return res.send("User not found");
         } 
     }
     catch (error) {
@@ -46,9 +45,7 @@ exports.handleSignUp = async (req, res) => {
         const bruker = await User.findOne({ brukernavn: brukernavn });
 
         if (bruker) {
-            return res.status(400).render("register", {
-            message: "Username is already in use",
-            });
+            return res.send("Username already exists");
         } else {
             if (passord === repeatPassord) {
                 const hashedPassword = await argon2.hash(passord);
@@ -56,9 +53,7 @@ exports.handleSignUp = async (req, res) => {
                 await nyBruker.save();
                 res.redirect("/signin");
             } else {
-                return res.status(400).render("register", {
-                    message: "Passwords do not match",
-                });
+                return res.send("Passwords do not match");
             }
         }
     }
@@ -68,4 +63,13 @@ exports.handleSignUp = async (req, res) => {
     }
 };
 
-
+// Logout Controller
+exports.handleLogout = async (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session:", err);
+            return res.status(500).send("Server error");
+        }
+        res.redirect("/signin");
+    });
+};
