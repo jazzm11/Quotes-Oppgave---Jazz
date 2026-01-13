@@ -6,10 +6,39 @@
             <form action="/lagresitater" method="POST" class="quotes-form">
                 <div class="form-group">
                     <label for="quotes">Your Quote:</label>
-                    <textarea id="quotes" name="quotes" class="form-control" placeholder="Write your quote here..." required></textarea>
-        <button type="submit" class="btn btn-primary">Publish</button>
+                    <textarea id="quotes" name="quotes" class="form-control" placeholder="Write your quote here..."
+                        required></textarea>
+                    <button type="submit" class="btn btn-primary">Publish</button>
                 </div>
+                
+                <!-- Display error message -->
+                <% if (error) { %>
+                    <p style="color:red; margin-top:10px;">
+                        <%= error %>
+                    </p>
+                    <% } %>
             </form>
+
+            <div class="users-quote">
+                <h2 class="subtitle">Your Published Quotes</h2>
+                <% if (quotes && quotes.length > 0) { %>
+                    <ol class="quotes-list">
+                        <% quotes.forEach(function(quote) { %>
+                            <li class="quote-item">
+                                <form action="/lagresitater/endre/<%= quote._id %>" method="POST" class="quote-form">
+                                    <input type="text" name="quotes" value="<%= quote.quotes %>">
+                                    <button type="submit" class="btn btn-secondary">RePublish</button>
+                                </form>
+                                <form action="/lagresitater/slett/<%= quote._id %>" method="POST" class="quote-form-2">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </li>
+                        <% }); %>
+                    </ol>
+                <% } else { %>
+                    <p>You have not published any quotes yet.</p>
+                <% } %>
+            </div>
         </div>
 
-    <%- include('partials/footer') %>
+        <%- include('partials/footer') %>

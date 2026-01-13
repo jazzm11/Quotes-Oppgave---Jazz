@@ -1,14 +1,14 @@
 function redirectIfLoggedOut(req, res, next) {
-    if (req.session && req.session.user) {
-        return next();
-    }
+  if (req.session && req.session.user) {
+    return next();
+  }
 
-    return res.status(401).json({ message: "Unauthorized" });
+  return res.redirect("/signin");
 }
 
 function redirectIfLoggedIn(req, res, next) {
   if (req.session.user || req.user) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
   next();
 }

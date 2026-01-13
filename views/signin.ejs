@@ -12,8 +12,15 @@
             <input type="password" id="passord" name="passord" class="form-control" placeholder="Skriv inn passord"
                 required>
         </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-        <a href="/signup" class="btn btn-link">sign up?</a>
+        <!-- Display error message -->
+        <% if (error) { %>
+            <p style="color:red; margin-top:10px;">
+                <%= error %>
+            </p>
+            <% } %>
+
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                <a href="/signup" class="btn btn-link">sign up?</a>
     </form>
 
     <%- include('partials/footer') %>

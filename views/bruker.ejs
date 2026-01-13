@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+    <%- include('partials/nav') %>
+        <div class="container">
+            <% if (brukernavnQuotes && brukernavnQuotes.length> 0) { %>
+                <h1 class="title">
+                    <%= brukernavnQuotes[0].brukernavn %>'s Quotes
+                </h1>
+                <div class="quotes-list-container">
+                    <% if (brukernavnQuotes && brukernavnQuotes.length> 0) { %>
+                        <ol class="quotes-list">
+                            <% brukernavnQuotes.forEach(function(quote) { %>
+                                <li class="quote-item">
+                                    <%= quote.quotes %>
+                                </li>
+                                <% }); %>
+                        </ol>
+
+                        <em>Author: <%= brukernavnQuotes[0].brukernavn %></em>
+
+                    <% } else { %>
+                            <p>No quotes available at the moment.</p>
+                            <% } %>
+                </div>
+                <% } else { %>
+                    <h1 class="title">No quotes found for this user.</h1>
+                    <% } %>
+        </div>
+
+        <%- include('partials/footer') %>

@@ -133,7 +133,50 @@ body {
   color: #0056b3;
 }
 
-/* Home Page Styles */
+/* Quote List Styles */
+.quote-list {
+  list-style: none;
+  padding: 0;
+}
+
+.quote-form input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.7em;
+  margin-bottom: 15px;
+}
+
+.quote-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.quote-form button:hover {
+    background-color: #218838;
+}
+
+.quote-form-2 button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.quote-form-2 button:hover {
+    background-color: #c82333;
+}
+
+/* Home Page & Quotes Page Styles */
 .title {
   font-size: 2.5em;
   margin-bottom: 0.5em;
@@ -143,6 +186,42 @@ body {
 .description {
   font-size: 1.2em;
   color: #666;
+  margin-bottom: 2em;
+}
+
+.quotes-list {
+  padding: 0;
+  font-size: 1.5em;
+}
+
+.quote-item {
+  padding: 15px;
+}
+
+.quote-item em {
+  color: #555;
+  font-size: small;
+}
+
+#random-quote {
+  font-size: 5em;
+  font-style: italic;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #007bff;
+  margin-top: 20px;
+}
+
+#random-quote em {
+  font-size: 0.4em;
+  color: #555;
+}
+
+.quote-section {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 60%;
+    width: 100%;
 }
 
 /* Navigation Styles */
