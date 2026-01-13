@@ -7,6 +7,7 @@ require("dotenv").config();
 // Router imports
 const defaultRouter = require("./router/defaultRouter");
 const userRouter = require("./router/userRouter");
+const quotesRouter = require("./router/quotesRouter");
 
 // App Setup
 const app = express();
@@ -31,6 +32,7 @@ connectDB(process.env.MONGO_URI);
 // Routes
 app.use(defaultRouter);
 app.use(userRouter);
+app.use(quotesRouter);
 
 // Server Listening
 const PORT = process.env.PORT || 3000;

@@ -1,12 +1,14 @@
-const { title } = require("process");
 const User = require("../models/userModel");
 const argon2 = require("argon2");
 
 // Sign In Controller
+
+// GET
 exports.visSignInSide = async (req, res) => {
     res.render("signin");
 };
 
+// POST
 exports.handleSignIn = async (req, res) => {
     try {
         const { brukernavn, passord } = req.body;
@@ -35,10 +37,13 @@ exports.handleSignIn = async (req, res) => {
 };  
 
 // Sign Up Controller
+
+// GET
 exports.visSignUpSide = async (req, res) => {
     res.render("signup");
 };
 
+// POST
 exports.handleSignUp = async (req, res) => {
     try {
         const { brukernavn, passord, repeatPassord } = req.body;

@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+
+    <%- include('partials/nav') %>
+        <div class="container">
+            <h1 class="title">Publish Your Quotes</h1>
+            <form action="/lagresitater" method="POST" class="quotes-form">
+                <div class="form-group">
+                    <label for="quotes">Your Quote:</label>
+                    <textarea id="quotes" name="quotes" class="form-control" placeholder="Write your quote here..." required></textarea>
+        <button type="submit" class="btn btn-primary">Publish</button>
+                </div>
+            </form>
+        </div>
+
+    <%- include('partials/footer') %>
