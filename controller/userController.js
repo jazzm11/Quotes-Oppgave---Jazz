@@ -86,3 +86,9 @@ exports.handleLogout = async (req, res) => {
     res.redirect("/signin");
   });
 };
+
+
+// Profile Controller
+exports.visProfileSide = async (req, res) => {
+  res.render("profile", { brukernavn: req.session.user });
+};

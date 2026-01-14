@@ -3,14 +3,14 @@ const Quotes = require("../models/quotesModel");
 // Quotes Side
 exports.quotesSide = async (req, res) => {
   const quotes = await Quotes.find();
-  res.render("quotes", { quotes });
+  res.render("quotes", { quotes, brukernavn: req.session.user });
 };
 
 // :brukernavn Quotes Side
 exports.brukernavnQuotesSide = async (req, res) => {
   const { brukernavn } = req.params;
   const brukernavnQuotes = await Quotes.find({ brukernavn });
-  res.render("bruker", { brukernavnQuotes });
+  res.render("bruker", { brukernavnQuotes, brukernavn: req.session.user });
 };
 
 // Save, Edit, and Delete Quotes Controller
@@ -21,7 +21,7 @@ exports.visLagresitaterSide = async (req, res) => {
 
   const error = req.session.error;
   req.session.error = null; // Clear after displaying
-  res.render("lagresitater", { error, quotes: usersQuotes });
+  res.render("lagresitater", { error, quotes: usersQuotes, brukernavn: req.session.user });
 };
 
 // POST
@@ -33,8 +33,8 @@ exports.handleLagresitater = async (req, res) => {
       req.session.error = "Quote cannot be shorter than 10 characters!";
 
       return res.redirect("/lagresitater");
-    } else if (req.body.quotes.length > 500) {
-      req.session.error = "Quote cannot be longer than 500 characters!";
+    } else if (req.body.quotes.length > 100) {
+      req.session.error = "Quote cannot be longer than 100 characters!";
 
       return res.redirect("/lagresitater");
     } else {

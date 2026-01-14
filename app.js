@@ -27,7 +27,8 @@ app.use(
 
 // DB Connection
 const connectDB = require("./config/db");
-connectDB(process.env.MONGO_URI);
+const URI = process.env.MONGO_URI || "mongodb://10.12.9.40:27017/quotesdb";
+connectDB(URI);
 
 // Routes
 app.use(defaultRouter);

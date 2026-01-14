@@ -9,7 +9,7 @@ const index = async (req, res) => {
   try {
     const quoteList = await Quotes.find();
     const quote = randomQuote(quoteList);
-    res.render("index", { quote });
+    res.render("index", { quote, brukernavn: req.session.user });
   } catch (error) {
     console.error("Error fetching quotes:", error);
   }
